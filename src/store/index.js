@@ -1,16 +1,16 @@
 import {createStore} from "vuex";
 
-export const index = createStore({
+export const store = createStore({
     state() {
         return {
             tasks: JSON.parse(localStorage.getItem('my-tasks')) ?? [],
         }
     },
     getters: {
-        TASKS: state => {
+        getTasks(state) {
             return state.tasks;
         },
-        ACTIVE_TASK_COUNT: state => {
+        getActiveTasks(state) {
             return state.tasks.filter(task => task.status === 'active').length;
         },
         // TASK_BY_ID: (state, id) => {
@@ -18,25 +18,30 @@ export const index = createStore({
         // }
     },
     mutations: {
-        SET_TASK: (state, task) => {
+        SET_TASK(state, task) {
             state.tasks = task;
         },
-        ADD_TASK: (state, task) => {
+        ADD_TASK(state, task) {
             state.tasks.push(task);
             // task по умолч объект =>
             localStorage.setItem('my-tasks', JSON.stringify(state.tasks));
         },
+        CHANGE_TASK(state, task) {
+            const idx = state.tasks.findIndex((t) => t.id === task.id);
+            state.tasks[idx] = task;
+            localStorage.setItem('my-tasks', JSON.stringify(state.tasks));
+        },
     },
     actions: {
-        GET_TASK: async (context, task) => {
+        createTask: async ({commit}, task) => {
             const newDate = new Date();
             if (task.date < newDate) {
                 task.status = 'cancelled';
             }
-            context.commit('get-task', task);
+            commit('SET_TASK', task);
         },
-        CHANGE_TASK: (context, task) => {
-            context.commit('change-task', task);
+        changeTask: ({commit}, task) => {
+            commit('CHANGE_TASK', task);
         },
     },
 });

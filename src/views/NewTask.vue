@@ -1,5 +1,5 @@
 <template>
-  <form class="card" @submit.prevent="submit">
+  <form class="card" @submit.prevent="submit" @keydown.enter="submit">
     <h1>Создать новую задачу</h1>
     <div class="form-control">
       <label for="title">Название</label>

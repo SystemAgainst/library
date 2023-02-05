@@ -2,10 +2,10 @@ import { createApp } from "vue";
 import App from "./App.vue";
 
 import "./assets/main.css";
-import {router} from "@/router";
-import {index} from "./store/index";
+import {router} from "@/router/index.js";
+import {store} from "@/store/index.js";
 
 createApp(App)
     .use(router)
-    .use(index)
+    .use(store)
     .mount("#app");
