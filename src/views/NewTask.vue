@@ -24,19 +24,21 @@
 <script>
 import {computed, ref} from "vue";
 import {useStore} from "vuex";
+import {useRouter} from "vue-router";
 
 export default {
   name: "NewTask",
   setup() {
     const store = useStore();
+    const router = useRouter();
 
-    const title = ref('')
-    const date = ref(null)
-    const description = ref('')
+    let title = ref('')
+    let date = ref(null)
+    let description = ref('')
 
     const isValid = computed(() => {
       return title.value !== ''
-          // && date.value
+          && date.value
           && description.value !== '';
     });
 
@@ -50,6 +52,7 @@ export default {
       };
 
       store.commit('ADD_TASK', newTaskObj);
+      router.push('/tasks');
     };
 
     return {
