@@ -3,7 +3,7 @@ import {createStore} from "vuex";
 export const index = createStore({
     state() {
         return {
-            tasks: JSON.parse(localStorage.getItem('my-tasks')) ?? {},
+            tasks: JSON.parse(localStorage.getItem('my-tasks')) ?? [],
         }
     },
     getters: {
@@ -13,11 +13,9 @@ export const index = createStore({
         ACTIVE_TASK_COUNT: state => {
             return state.tasks.filter(task => task.status === 'active').length;
         },
-        TASK_BY_ID: (id, getters) => {
-            id = getters.TASKS.find(t => t.id === id);
-            console.log(id);
-            return id;
-        }
+        // TASK_BY_ID: (state, id) => {
+        //     return state.tasks.find(t => t.id === id);
+        // }
     },
     mutations: {
         SET_TASK: (state, task) => {
@@ -25,7 +23,8 @@ export const index = createStore({
         },
         ADD_TASK: (state, task) => {
             state.tasks.push(task);
-            localStorage.setItem('my-tasks', task);
+            // task по умолч объект =>
+            localStorage.setItem('my-tasks', JSON.stringify(state.tasks));
         },
     },
     actions: {

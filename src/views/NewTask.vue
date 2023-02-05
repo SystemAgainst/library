@@ -16,13 +16,6 @@
       <textarea id="description" v-model="description"></textarea>
     </div>
 
-    <hr>
-    <ul>
-      <li>
-        <router-link to="/test" >TestPage</router-link>
-      </li>
-    </ul>
-
     <button class="btn primary" :disabled="!isValid">Создать</button>
   </form>
 </template>
@@ -30,10 +23,13 @@
 
 <script>
 import {computed, ref} from "vue";
+import {useStore} from "vuex";
 
 export default {
   name: "NewTask",
   setup() {
+    const store = useStore();
+
     const title = ref('')
     const date = ref(null)
     const description = ref('')
@@ -53,9 +49,7 @@ export default {
         status: 'active',
       };
 
-      console.log(newTaskObj);
-      // let tasks = this.$store.getters.TASKS;
-      // console.log(tasks);
+      store.commit('ADD_TASK', newTaskObj);
     };
 
     return {
@@ -65,7 +59,6 @@ export default {
       description,
       isValid,
     };
-    const test = this.$store.getters.TASKS;
   }
 }
 </script>
