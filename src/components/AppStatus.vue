@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import {ref, watch} from "vue";
+import { ref, watch } from "vue";
 
 export default {
   name: "AppStatus",
@@ -11,25 +11,25 @@ export default {
     type: {
       type: String,
       required: true,
-      default: 'active',
+      default: "active",
       validator(value) {
-        return ['active', 'done', 'cancelled', 'pending'].includes(value);
+        return ["active", "done", "cancelled", "pending"].includes(value);
       },
     },
   },
   setup(props) {
     const classesMap = {
-      active: 'primary',
-      cancelled: 'danger',
-      done: 'primary',
-      pending: 'warning'
+      active: "primary",
+      cancelled: "danger",
+      done: "primary",
+      pending: "warning",
     };
 
     const textMap = {
-      active: 'Активен',
-      cancelled: 'Отменен',
-      done: 'Завершен',
-      pending: 'Выполняется'
+      active: "Активен",
+      cancelled: "Отменен",
+      done: "Завершен",
+      pending: "Выполняется",
     };
 
     const className = ref(classesMap[props.type]);
@@ -43,7 +43,7 @@ export default {
     return {
       text,
       className,
-    }
+    };
   },
-}
+};
 </script>
