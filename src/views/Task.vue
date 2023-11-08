@@ -11,7 +11,7 @@
     </div>
   </div>
   <h3 class="text-white center" v-else>
-    Задачи с id = <strong>{{ taskById }}</strong> нет.
+    Рекламной кампании с id = <strong>{{ taskById }}</strong> нет.
   </h3>
 </template>
 

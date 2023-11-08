@@ -1,6 +1,6 @@
 <template>
   <form class="card" @submit.prevent="submit" @keydown.enter="submit">
-    <h1>Создать новую задачу</h1>
+    <h1>Создать новую рекламную кампанию</h1>
     <div class="form-control">
       <label for="title">Название</label>
       <input type="text" id="title" v-model="title">

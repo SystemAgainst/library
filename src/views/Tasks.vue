@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1 class="text-white center" v-if="tasks.length === 0">Задач пока нет</h1>
+    <h1 class="text-white center" v-if="tasks.length === 0">Книг пока нет</h1>
     <template v-else>
       <div class="card-title">
-        <h3 class="text-white">Всего книг в библиотеке: {{ activeTask }}</h3>
+        <h3 class="text-white">Всего книг: {{ activeTask }}</h3>
         <the-select
           :type="typeDefault"
           :selected="selected"
@@ -23,7 +23,9 @@
             </small>
           </strong>
         </p>
-        <button class="btn primary" @click="openTask(task.id)">Посмотреть</button>
+        <button class="btn primary" @click="openTask(task.id)">
+          Посмотреть
+        </button>
       </div>
     </template>
   </div>
